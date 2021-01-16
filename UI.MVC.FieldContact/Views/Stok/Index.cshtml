@@ -1,0 +1,81 @@
+﻿@section CssFiles
+{
+    <link href="/Content/global/plugins/datatables/datatables.min.css" rel="stylesheet" />
+    <link href="/Content/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" />
+}
+
+@section JsFiles
+{
+    <script src="/Content/global/plugins/datatables/datatables.min.js"></script>
+    <script src="/Content/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js"></script>
+    <script src="/Scripts/Stok/Index.js?@DateTime.Now"></script>
+    <script src="/Content/global/scripts/datatable.js"></script>
+    <script src="/Content/pages/scripts/table-datatables-responsive.js"></script>
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN Portlet PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-green-sharp">
+                    <i class="icon-speech font-green-sharp"></i>
+                    <span class="caption-subject bold uppercase"> Ürünler</span>
+                    <span class="caption-helper">ürün stok takibi sayfası...</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-bordered table-hover" id="prodList">
+                    <thead>
+                        <tr>
+                            <th>Ürün Adı</th>
+                            <th>Açıklama</th>
+                            <th>Stok</th>
+                            <th>Sipariş Sayısı*</th>
+                            <th>İşlem </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <span>*<sup>Ürüne ait toplam teslim edilmemiş sipariş sayısı</sup></span>
+            </div>
+        </div>
+        <!-- END Portlet PORTLET-->
+    </div>
+</div>
+
+<div id="responsive" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Kategori İşlem</h4>
+            </div>
+            <input type="hidden" id="id" />
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @*<label>Proje Adı</label>*@
+                            <input id="name" type="text" class="form-control" placeholder="Ürün Adı Griiniz.">
+                        </div>
+                        <div class="form-group">
+
+                            <input id="description" type="text" class="form-control" placeholder="Ürün açıklaması">
+                        </div>
+                        <div class="form-group">
+
+                            <input id="unitsInStock" type="text" class="form-control" placeholder="Stok durumu giriniz">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn dark btn-outline">Close</button>
+                <button type="button" class="btn green" id="saveChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+

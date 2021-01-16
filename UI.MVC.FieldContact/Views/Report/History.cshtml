@@ -1,0 +1,285 @@
+﻿
+@section CssFiles
+{
+    <link href="/Content/global/plugins/datatables/datatables.min.css" rel="stylesheet" />
+    <link href="/Content/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" />
+}
+@section JsFiles
+{
+    <script src="/Scripts/Report/ServiceForms.js?@DateTime.Now"></script>
+    <script src="/Content/global/scripts/datatable.js"></script>
+    <script src="/Content/global/plugins/datatables/datatables.min.js"></script>
+    <script src="/Content/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js"></script>
+    <script src="/Content/pages/scripts/table-datatables-managed.js"></script>
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+
+
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light ">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> Servis Raporları</span><br /><br />
+                    <span class="caption-helper">
+                        Bu bölümden daha önceden oluşturulmuş servis formları listelenir. Büyüteç işaretine basılarak servis formu
+                        detayı görüntülenir
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div class="btn-group pull-right">
+                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">
+                            Araçlar
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-print"></i> Print
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-file-pdf-o"></i> Save as PDF
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-file-excel-o"></i> Export to Excel
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="serviceReports">
+                    <thead>
+                        <tr>
+
+                            <th> Firma Adı </th>
+                            <th> Servisi Veren </th>
+                            <th> Başlangıç Tarihi </th>
+                            <th> Bitiş Tarihi </th>
+                            <th> Servis Tipi </th>
+                            <th> Görüntüle </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+<div class="portlet light hidden serviceFormtoShow">
+    <div class="portlet-title">
+        <div class="caption font-red-sunglo">
+            <i class="icon-settings font-red-sunglo"></i>
+            <span class="caption-subject bold uppercase"> Servis Formu Oluştur</span>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form role="form">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h1 style="font-size:80px; color:gray;"> <b> FIRM </b></h1>
+                    </div>
+                    <div class="col-md-7">
+                        <br /><span><b> FIRM Building Automation, Enginering  Ltt. Co.  </b></span>
+                        <pre>
+Tanpınar Cad. Oğuz Atay Çıkmazı No:1 Beşiktaş 34000 İstanbul</>
+Tel     : +90 212 - 222 22 22 PBX
+Faks    : +90 212 - 222 22 22 PBX
+Web     : www.fieldcontact.net
+e-posta : info@fieldcontact.net
+                        </pre>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <p style="font-size:15px; color:black"><b><ins>TEKNİK SERVİS FORMU / TECHNIC SERVICE FORM</ins></b></p>
+                    </div>
+                    <div class="col-md-2">
+                        <p class="pull-right"> Seri: <span style="color:red">MY001</span>  </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label>Firma   :</label>
+                        </div>
+                        <div class="col-md-3">
+                            <span id="companyName"></span>
+
+                        </div>
+                        <div class="col-md-1">
+                            <label>Adres    :</label>
+                        </div>
+                        <div class="col-md-7">
+                            <p id="companyAdress">.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label>Firma Yetkilisi  :</label>
+                        </div>
+                        <div class="col-md-3">
+                            <p id="comEmp1">.</p>
+                        </div>
+                        <div class="col-md-1">
+                            <label>GSM No / e-mail:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <p id="employeeId1"> </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label>Şantiye Yetkilisi  :</label>
+                        </div>
+                        <div class="col-md-3">
+                            <p id="coEmp2">.</p>
+                        </div>
+                        <div class="col-md-1">
+                            <label>GSM No / e-mail:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <p id="employeeId2"> </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label>Başlangıç Tarihi  :</label>
+
+                        </div>
+                        <div class="col-md-3">
+                            <input id="startDate" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" disabled />
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label>Bitiş Tarihi  :</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="endDate" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" disabled />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Outline Checkboxes</label>
+                    <div class="mt-checkbox-list">
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            HVAC Otomasyonu
+                            <input type="checkbox" value="1" name="HVAC" disabled />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Toplantı
+                            <input type="checkbox" value="1" name="toplanti" disabled />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Ücretli
+                            <input type="checkbox" value="1" name="ucretli" disabled />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Ücretsiz
+                            <input type="checkbox" value="1" name="ucretsiz" disabled />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Garantili
+                            <input type="checkbox" value="1" name="warrantied" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Arıza Servis
+                            <input type="checkbox" value="1" name="arizaServis" disabled />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Süpervizyon
+                            <input type="checkbox" value="1" name="supervision" disabled />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Devreye Alma
+                            <input type="checkbox" value="1" name="devreyeAlma" disabled />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Eğitim
+                            <input type="checkbox" value="1" name="educat" disabled />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Montaj ve Uç Bağlantısı
+                            <input type="checkbox" value="1" name="montaj" disabled />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Bakım
+                            <input type="checkbox" value="1" name="bakim" disabled />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            1.Bakım
+                            <input type="checkbox" value="1" name="bakim1" disabled />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            2.Bakım
+                            <input type="checkbox" value="1" name="bakim2" disabled />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            3.Bakım
+                            <input type="checkbox" value="1" name="bakim3" disabled />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Malzeme Teslim
+                            <input type="checkbox" value="1" name="teslim" disabled />
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Yapılacak İşin Tanımı</label>
+                    <textarea class="form-control" rows="2" id="jobDesc" disabled></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Yapılan İş/Rapor</label>
+                    <textarea class="form-control" rows="10" id="serviceDetails" disabled></textarea>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+

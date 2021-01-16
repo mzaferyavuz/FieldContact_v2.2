@@ -1,0 +1,267 @@
+﻿
+@model UI.MVC.FieldContact.PageModel.Report.ServiceFormModel
+
+@section CssFiles
+{
+    <link href="/Content/global/plugins/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="/Content/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
+}
+
+@section JsFiles
+{
+    <script src="/Content/global/plugins/select2/js/select2.full.min.js"></script>
+    <script src="/Content/pages/scripts/components-select2.min.js"></script>
+    <script src="/Scripts/Report/Service.js?@DateTime.Now"></script>
+    <script src="/Content/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
+    <script src="/Content/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
+}
+
+
+
+<!-- BEGIN SAMPLE FORM PORTLET-->
+<div class="portlet light ">
+    <div class="portlet-title">
+        <div class="caption font-red-sunglo">
+            <i class="icon-settings font-red-sunglo"></i>
+            <span class="caption-subject bold uppercase"> Servis Formu Oluştur</span>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form role="form">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h1 style="font-size:80px; color:gray;"> <b> FIRM </b></h1>
+                    </div>
+                    <div class="col-md-7">
+                        <br /><span><b> FIRM Building Automation, Enginering  Ltt. Co.  </b></span>
+                        <pre>
+Tanpınar Cad. Oğuz Atay Çıkmazı No:1 Beşiktaş 34000 İstanbul</>
+Tel     : +90 212 - 222 22 22 PBX
+Faks    : +90 212 - 222 22 22 PBX
+Web     : www.fieldcontact.net
+e-posta : info@fieldcontact.net
+                        </pre>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <p style="font-size:15px; color:black"><b><ins>TEKNİK SERVİS FORMU / TECHNIC SERVICE FORM</ins></b></p>
+                    </div>
+                    <div class="col-md-2">
+                        <p class="pull-right"> Seri: <span style="color:red">MY001</span>  </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label>Firma   :</label>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <select id="span_small" class="form-control select2 companySelection js-example-placeholder-single">
+                                    <optgroup label="Kayıtlı Firmalar">
+
+                                        <option></option>
+                                        @for (int i = 0; i < Model.Companies.Count; i++)
+                                        {
+                                            <option value="@Model.Companies[i].ID">@Model.Companies[i].Name</option>
+                                        }
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <label>Adres    :</label>
+                        </div>
+                        <div class="col-md-7">
+                            <p id="companyAdress">.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label>Firma Yetkilisi  :</label>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                @*<select class="js-data-example-ajax" disabled></select>*@
+                                <select id="companyEmployee1" class="form-control select2 companyEmployee1" disabled>
+                                    <option></option>
+                                    @*<optgroup label="Şantiye Yetkilisi">
+                                            @for (int i = 0; i < Model.Companies.Count; i++)
+                                            {
+                                                <option value="@Model.Companies[i].ID">@Model.Companies[i].Name</option>
+                                            }
+                                        </optgroup>*@
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <label>GSM No / e-mail:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <p id="employeeId1"> </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label>Şantiye Yetkilisi  :</label>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <select id="companyEmployee2" class="form-control select2 companyEmployee2" disabled>
+                                    @*<optgroup label="Şantiye Yetkilisi">
+                                            @for (int i = 0; i < Model.Companies.Count; i++)
+                                            {
+                                                <option value="@Model.Companies[i].ID">@Model.Companies[i].Name</option>
+                                            }
+                                        </optgroup>*@
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <label>GSM No / e-mail:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <p id="employeeId2"> </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label>Başlangıç Tarihi  :</label>
+
+                        </div>
+                        <div class="col-md-3">
+                            <input id="startDate" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label>Bitiş Tarihi  :</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="endDate" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Outline Checkboxes</label>
+                    <div class="mt-checkbox-list">
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            HVAC Otomasyonu
+                            <input type="checkbox" value="1" name="HVAC" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Toplantı
+                            <input type="checkbox" value="1" name="toplanti" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Ücretli
+                            <input type="checkbox" value="1" name="ucretli" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Ücretsiz
+                            <input type="checkbox" value="1" name="ucretsiz" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Garantili
+                            <input type="checkbox" value="1" name="warrantied" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Arıza Servis
+                            <input type="checkbox" value="1" name="arizaServis" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Süpervizyon
+                            <input type="checkbox" value="1" name="supervision" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Devreye Alma
+                            <input type="checkbox" value="1" name="devreyeAlma" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Eğitim
+                            <input type="checkbox" value="1" name="educat" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Montaj ve Uç Bağlantısı
+                            <input type="checkbox" value="1" name="montaj" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Bakım
+                            <input type="checkbox" value="1" name="bakim" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            1.Bakım
+                            <input type="checkbox" value="1" name="bakim1" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            2.Bakım
+                            <input type="checkbox" value="1" name="bakim2" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            3.Bakım
+                            <input type="checkbox" value="1" name="bakim3" />
+                            <span></span>
+                        </label>
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            Malzeme Teslim
+                            <input type="checkbox" value="1" name="teslim" />
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Yapılacak İşin Tanımı</label>
+                    <textarea class="form-control" rows="2" id="jobDesc"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Yapılan İş/Rapor</label>
+                    <textarea class="form-control" rows="10" id="serviceDetails"></textarea>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn blue" id="saveForm">Raporu Gönder</button>
+                <button type="reset" class="btn default" id="cancelForm">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- END SAMPLE FORM PORTLET-->

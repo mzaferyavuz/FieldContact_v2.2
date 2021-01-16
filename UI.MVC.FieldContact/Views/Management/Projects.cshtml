@@ -1,0 +1,119 @@
+﻿@section CssFiles
+{
+    <link href="/Content/global/plugins/datatables/datatables.min.css" rel="stylesheet" />
+    <link href="/Content/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" />
+}
+
+@section JsFiles
+{
+    <script src="/Content/global/plugins/datatables/datatables.min.js"></script>
+    <script src="/Content/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js"></script>
+    <script src="/Scripts/Management/Management_Projects.js?@DateTime.Now"></script>
+    <script src="/Content/global/scripts/datatable.js"></script>
+    <script src="/Content/pages/scripts/table-datatables-responsive.js"></script>
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN Portlet PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-green-sharp">
+                    <i class="icon-speech font-green-sharp"></i>
+                    <span class="caption-subject bold uppercase"> Projeler</span>
+                    <span class="caption-helper">proje ekleme-çıkarma ve düzenleme sayfası...</span>
+                </div>
+                <div class="actions">
+                    <a data-toggle="modal" href="#responsive" class="newButton btn btn-circle btn-default btn-sm">
+                        <i class="fa fa-plus"></i> Ekle
+                    </a>
+                    <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-bordered table-hover dt-responsive" id="compList">
+                    <thead>
+                        <tr>
+                            <th class="all">Proje</th>
+                            <th class="none">Adres</th>
+                            <th class="none">Şehir</th>
+                            <th class="none">Posta Kodu</th>
+                            <th class="none">Telefon</th>
+                            <th class="none">Fax</th>
+                            <th class="none">Mail</th>
+                            <th class="all">Başlangıç</th>
+                            <th class="all">Planlanan Devreye Alma</th>
+                            <th class="all">Devre Alma Tarihi</th>
+                            <th class="all">İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END Portlet PORTLET-->
+    </div>
+</div>
+
+<div id="responsive" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Kategori İşlem</h4>
+            </div>
+            <input type="hidden" id="id" />
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @*<label>Proje Adı</label>*@
+                            <input id="name" type="text" class="form-control" placeholder="Proje Adı Griiniz.">
+                        </div>
+                        <div class="form-group">
+
+                            <input id="address" type="text" class="form-control" placeholder="Açık adres. Zorunlu değildir daha sonra girilebilir.">
+                        </div>
+                        <div class="form-group">
+
+                            <input id="city" type="text" class="form-control" placeholder="Şehir">
+                        </div>
+                        <div class="form-group">
+
+                            <input id="postalCode" type="text" class="form-control" placeholder="Posta Kodu">
+                        </div>
+                        <div class="form-group">
+                            <label>Telefon Numarası</label>
+                            <input id="phoneNumber" type="text" class="form-control" placeholder="Başında '0' olmadan giriniz">
+                        </div>
+                        <div class="form-group">
+                            <label>Fax Numarası</label>
+                            <input id="faxNumber" type="text" class="form-control" placeholder="Başında '0' olmadan giriniz">
+                        </div>
+                        <div class="form-group">
+                            <label>E-Mail</label>
+                            <input id="emailAddress" type="text" class="form-control" placeholder="examle@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Proje Başlangıç Tarihi </label>
+                            <input id="projectStart" type="text" class="form-control" placeholder="dd.mm.yyyy">
+                        </div>
+                        <div class="form-group">
+                            <label>Planlanan Devreye Alma Tarihi</label>
+                            <input id="plannedEndDate" type="text" class="form-control" placeholder="dd.mm.yyyy">
+                        </div>
+                        <div class="form-group">
+                            <label>Devreye Alma Tarihi</label>
+                            <input id="commissioningDate" type="text" class="form-control" placeholder="dd.mm.yyyy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn dark btn-outline">Close</button>
+                <button type="button" class="btn green" id="saveChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

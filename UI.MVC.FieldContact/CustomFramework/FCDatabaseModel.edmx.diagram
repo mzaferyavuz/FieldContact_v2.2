@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="36c4ba3e48024737be0f3d7ae499f546" Name="Diagram1">
+        <EntityTypeShape EntityType="FCDatabaseModel.Application_Action" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.Application_Controller" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.Car" Width="1.5" PointX="9.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.Company" Width="1.5" PointX="9.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.CompEmployee" Width="1.5" PointX="9.75" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.DailyForm" Width="1.5" PointX="12" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.EmployeeDetail" Width="1.5" PointX="9.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.General_RowStatus" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.Membership_Role" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.Membership_User" Width="1.5" PointX="7.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.Order" Width="1.5" PointX="15" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.Product" Width="1.5" PointX="12.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.Schedule" Width="1.5" PointX="12" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.ServiceForm" Width="1.5" PointX="12" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FCDatabaseModel.UserXAction" Width="1.5" PointX="9.75" PointY="11.125" IsExpanded="true" />
+        <AssociationConnector Association="FCDatabaseModel.FK_Application_Action_Application_Controller" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_UserXAction_Application_Action" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_DailyForms_Cars" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_CompEmployees_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_DailyForms_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_Orders_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_Schedule_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_ServiceForms_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_ServiceForms_CompEmployees" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_ServiceForms_CompEmployees1" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_DailyForms_EmployeeDetails1" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_EmployeeDetails_Membership_User" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_Orders_EmployeeDetails1" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_Schedule_EmployeeDetails2" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_Schedule_EmployeeDetails3" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_ServiceForms_EmployeeDetails1" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_Membership_User_General_RowStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_UserXAction_Membership_User" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.FK_Orders_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.ActionXRole" ManuallyRouted="false" />
+        <AssociationConnector Association="FCDatabaseModel.UserXRole" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

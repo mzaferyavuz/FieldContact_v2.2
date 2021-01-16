@@ -1,0 +1,74 @@
+﻿@model UI.MVC.FieldContact.PageModel.Schedule.ScheduleRequestModel
+
+@section CssFiles
+{
+    <link href="/Content/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/global/plugins/select2/css/select2.min.css" rel="stylesheet" />
+}
+
+@section JsFiles
+{
+    <script src="/Content/global/plugins/select2/js/select2.full.min.js"></script>
+    <script src="/Content/pages/scripts/components-select2.min.js"></script>
+    <script src="/Content/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
+    <script src="/Content/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
+    <script src="/Scripts/Schedule/ScheduleRequest.js?@DateTime.Now"></script>
+}
+
+
+
+<!-- BEGIN SAMPLE FORM PORTLET-->
+<div class="portlet light ">
+    <div class="portlet-title">
+        <div class="caption font-red-sunglo">
+            <i class="icon-settings font-red-sunglo"></i>
+            <span class="caption-subject bold uppercase"> İş Programı Talebi</span> <br /><br />
+            <span class="caption-helper"> İş programı bölümünden tüm çalışanlara yetkili kişi program atayabilir. Bu bölümden ise iş programı oluşturma
+            yetkisi olmayan çalışan sadece kendisine iş programı atayabilir.</span>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form role="form">
+            <div class="form-body">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <input id="selectedDate" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="" />
+                            <span class="help-block"> Select date </span>
+                            @*<button type="button" class="btn green-haze btn-outline sbold uppercase" id="listDate">Listele</button>*@
+                        </div>
+                    </div>
+                    <div class="form-group has-success col-md-12">
+                        <label for="span_small" class="control-label">Gidilecek Şantiye-Firma</label><br />
+                        <select id="span_small" class="form-control select2 col-md-12 getCompany">
+                            <optgroup label="Kayıtlı Firmalar">
+
+
+                                @for (int i = 0; i < Model.Jobs.Count; i++)
+                                {
+                                    <option value="@Model.Jobs[i].ID">@Model.Jobs[i].JobName</option>
+                                }
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <input type="hidden" id="id" />
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn blue" id="sendReport">Raporu Gönder</button>
+                <button type="reset" class="btn default">Temizle</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- END SAMPLE FORM PORTLET-->

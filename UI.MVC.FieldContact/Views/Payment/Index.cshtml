@@ -1,0 +1,237 @@
+﻿@model UI.MVC.FieldContact.PageModel.Payment.PaymentPageModel
+
+@section CssFiles{
+    <link href="/Content/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="/Content/global/plugins/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="/Content/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" />
+}
+
+@section JsFiles{
+    <script src="/Content/pages/scripts/table-datatables-buttons.min.js"></script>
+    <script src="/Content/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="/Content/global/plugins/select2/js/select2.full.min.js"></script>
+    <script src="/Content/pages/scripts/components-select2.min.js"></script>
+    <script src="/Content/pages/scripts/components-bootstrap-select.min.js"></script>
+    <script src="/Content/pages/scripts/table-datatables-responsive.js"></script>
+    <script src="~/Scripts/Payment/Payment_Index.js?@DateTime.Now"></script>
+}
+
+<div class="row hidden" id="employeeSelection">
+    <div class="col-md-12">
+        <div class="portlet box red">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-wrench"></i>Çalışan Seçimi
+                </div>
+            </div>
+            <div class="portlet-body">
+                <input type="hidden" id="pageRequesterId" value="@Model.PageRequesterID" />
+                <div class="form-group">
+                    <span class="caption-helper">Bu sayfada çalışan seçimi bölümü sadece yetkili kişiler tarafından görülebilir. Yetkili kişi, çalışan seçip 
+                    işlemlere devam eder.</span><br />
+                    <span class="caption-helper">Yetkisiz girişlerde bu bölüm açılmadan giriş yapan sadece kendi Avans/Masraf hareketlerini yönlendirilir.</span><br />
+                    <br />
+                    <select id="span_small" class="form-control select2 empSelection">
+                        <optgroup label="Çalışanlar">
+
+
+                            @for (int i = 0; i < Model.Employees.Count; i++)
+                            {
+                                <option value="@Model.Employees[i].ID">@Model.Employees[i].Name  @Model.Employees[i].LastName</option>
+                            }
+                        </optgroup>
+                    </select>
+                </div>
+                <a class="btn btn-circle btn-sm green getDetails">
+                    Detaylar
+                    <i class="fa fa-user "> </i>
+                </a>
+
+                @*<div class="tab-pane active butunProjeler" id="portlet_tab_1">
+                        <table class="table table-striped table-bordered table-hover" id="projectDetails">
+                            <thead>
+                                <tr>
+                                    <th>Çalışan</th>
+                                    <th>Detaylar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Employees)
+                                {
+                                    <tr><td>@item.Name + @item.LastName</td>
+                                <td>
+                                    <a class="btn btn-circle btn-sm green getDetails" id="@item.ID">
+                                           Detaylar
+                                         <i class="fa fa-user "> </i>
+                                    </a>
+                                </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row hidden" id="activityLog">
+    <div class="col-md-12">
+        <!-- BEGIN Portlet PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-green-sharp">
+                    <i class="icon-speech font-green-sharp"></i>
+                    <span class="caption-subject bold uppercase"> Masraf Dökümü</span>
+                    <span class="caption-helper">masraf hareketleri sayfası...</span><br />
+                    <span class="caption-helper">1- Ekle Butonuna basılarak açılan pencereden hareket tipi seçilir.</span><br />
+                    <span class="caption-helper">2- Eklenen hareket dökümüne gelip Detaylar butonuna basılarak, oluşturulan hareket açılır.</span><br />
+                    <span class="caption-helper">3- Açılan hareket örneğin Avans ise tek kalem miktar girilir. Masraf ise her kalem açıklaması ile 
+                    birlikte ayrı ayrı eklenir</span>
+                </div>
+                <div class="actions">
+                    <a data-toggle="modal" href="#responsive" class="newButton btn btn-circle btn-default btn-sm">
+                        <i class="fa fa-plus"></i> Ekle
+                    </a>
+                    <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <input type="hidden" id="selEmpId" />
+                <table class="table table-striped table-bordered table-hover dt-responsive" id="detailedTable">
+                    <thead>
+                        <tr>
+                            <th class="all"> Hareket Tarihi </th>
+                            <th class="all"> Hareket Tipi </th>
+                            <th class="all"> Hareket Tutarı</th>
+                            <th class="all"> Detay </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th class="all"></th>
+                            <th class="all">Bakiye :</th>
+                            <th class="all" id="bakiyeShow">000</th>
+                            <th class="all"></th>
+                        </tr>
+                    </tfoot>
+                </table>
+                @*<div class="caption font-green-sharp">
+                    <i class="icon-speech font-green-sharp"></i>
+                    <span class="caption-helper"> Bakiye :</span>
+                    <span class="caption-helper" id="bakiyeTutar"></span>
+                </div>*@
+            </div>
+        </div>
+        <!-- END Portlet PORTLET-->
+    </div>
+</div>
+
+<div id="responsive" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Masraf Hareketi</h4>
+            </div>
+            <input type="hidden" id="id" />
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="form-group">
+                            <select id="span_small" class="form-control select2 activityTypeSelection" name="typeSelection">
+                                <optgroup label="Ürünler">
+                                    <option value="1">Avans</option>
+                                    <option value="2">Masraf</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn dark btn-outline">Close</button>
+                <button type="button" class="btn green" id="saveChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row hidden" id="activityDetail">
+    <div class="col-md-12">
+        <!-- BEGIN Portlet PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-green-sharp">
+                    <i class="icon-speech font-green-sharp"></i>
+                    <span class="caption-subject bold uppercase"> Masraf Detayı </span>
+                    <span class="caption-helper">masraf hareketi düzenleme</span>
+                </div>
+                <div class="actions">
+                    <a data-toggle="modal" href="#responsive2" class="newButton btn btn-circle btn-default btn-sm">
+                        <i class="fa fa-plus"></i> Ekle
+                    </a>
+                    
+                    <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <input type="hidden" id="activityID" />
+                <table class="table table-striped table-bordered table-hover dt-responsive" id="paymentTable">
+                    
+                    <thead>
+                        <tr>
+                            <th class="all"> Tarih </th>
+                            <th class="all"> Açıklama </th>
+                            <th class="all"> Tutar </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END Portlet PORTLET-->
+    </div>
+</div>
+
+<div id="responsive2" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Masraf Hareketi</h4>
+            </div>
+            <input type="hidden" id="id2" />
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="form-group">
+                            <input id="payDate" type="text" class="form-control" value="0">
+                        </div>
+                        <div class="form-group">
+                            <input id="description" type="text" class="form-control" value="0">
+                        </div>
+                        <div class="form-group">
+                            <input id="payAmount" type="text" class="form-control" value="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn dark btn-outline">Close</button>
+                <button type="button" class="btn green" id="saveBill">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

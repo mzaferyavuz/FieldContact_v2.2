@@ -1,0 +1,1406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FCDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActionXRole">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="ActionID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="ActionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Application_Action">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ControllerID" Type="int" />
+        </EntityType>
+        <EntityType Name="Application_Controller">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="CarBrand" Type="nvarchar" MaxLength="50" />
+          <Property Name="HiredKm" Type="float" />
+          <Property Name="ContractKm" Type="float" />
+          <Property Name="HiredDate" Type="date" />
+          <Property Name="ContractDate" Type="date" />
+          <Property Name="ActualKm" Type="float" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="20" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="11" />
+          <Property Name="FaxNumber" Type="nvarchar" MaxLength="11" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjectStart" Type="date" />
+          <Property Name="PlannedEndDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>
+        <EntityType Name="CompEmployees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="11" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DailyForms">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="CarID" Type="int" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="EmployeeDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="HireDate" Type="datetime" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="PersonelPhone" Type="nvarchar" MaxLength="11" />
+          <Property Name="CompPhone" Type="nvarchar" MaxLength="11" />
+          <Property Name="Salary" Type="money" />
+          <Property Name="IsMarried" Type="bit" />
+        </EntityType>
+        <EntityType Name="General_RowStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Membership_Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Membership_User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="250" />
+          <Property Name="Salt" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="UserCode" Type="uniqueidentifier" />
+          <Property Name="RowStatusID" Type="int" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="Delivered" Type="int" />
+          <Property Name="OrderQuantity" Type="int" />
+          <Property Name="ContQuantity" Type="int" />
+          <Property Name="SalePrice" Type="float" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="float" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="UnitsInStock" Type="smallint" />
+          <Property Name="UnitsInOrder" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="JobCreatorID" Type="int" Nullable="false" />
+          <Property Name="JobCreationDate" Type="datetime" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ServiceForms">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="CompEmp1ID" Type="int" />
+          <Property Name="CompEmp2ID" Type="int" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="ServiceTypeID" Type="int" />
+          <Property Name="JobDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="ServiceDetails" Type="ntext" />
+          <Property Name="SerialNo" Type="nvarchar" MaxLength="6" />
+          <Property Name="IsWarrantied" Type="bit" />
+          <Property Name="IsFree" Type="bit" />
+          <Property Name="IsArıza" Type="bit" />
+          <Property Name="IsBakım" Type="bit" />
+          <Property Name="IsSupervice" Type="bit" />
+          <Property Name="IsDevreyeAlma" Type="bit" />
+          <Property Name="IsEducate" Type="bit" />
+          <Property Name="IsMontage" Type="bit" />
+          <Property Name="IsDelivering" Type="bit" />
+          <Property Name="IsMeeting" Type="bit" />
+          <Property Name="IsFirsManint" Type="bit" />
+          <Property Name="IsSecondMaint" Type="bit" />
+          <Property Name="IsThirdMaint" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserXAction">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ActionID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ActionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserXRole">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ActionXRole_Application_Action">
+          <End Role="Application_Action" Type="Self.Application_Action" Multiplicity="1" />
+          <End Role="ActionXRole" Type="Self.ActionXRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application_Action">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ActionXRole">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActionXRole_Membership_Role">
+          <End Role="Membership_Role" Type="Self.Membership_Role" Multiplicity="1" />
+          <End Role="ActionXRole" Type="Self.ActionXRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership_Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ActionXRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Action_Application_Controller">
+          <End Role="Application_Controller" Type="Self.Application_Controller" Multiplicity="0..1" />
+          <End Role="Application_Action" Type="Self.Application_Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application_Controller">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Application_Action">
+              <PropertyRef Name="ControllerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompEmployees_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="CompEmployees" Type="Self.CompEmployees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CompEmployees">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyForms_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+          <End Role="DailyForms" Type="Self.DailyForms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DailyForms">
+              <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyForms_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="DailyForms" Type="Self.DailyForms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DailyForms">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyForms_EmployeeDetails1">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetails" Multiplicity="1" />
+          <End Role="DailyForms" Type="Self.DailyForms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DailyForms">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeDetails_Membership_User">
+          <End Role="Membership_User" Type="Self.Membership_User" Multiplicity="1" />
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetails" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Membership_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmployeeDetails">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Membership_User_General_RowStatus">
+          <End Role="General_RowStatus" Type="Self.General_RowStatus" Multiplicity="0..1" />
+          <End Role="Membership_User" Type="Self.Membership_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="General_RowStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Membership_User">
+              <PropertyRef Name="RowStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_EmployeeDetails1">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetails" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_EmployeeDetails2">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetails" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_EmployeeDetails3">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetails" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="JobCreatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceForms_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="ServiceForms" Type="Self.ServiceForms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceForms">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceForms_CompEmployees">
+          <End Role="CompEmployees" Type="Self.CompEmployees" Multiplicity="0..1" />
+          <End Role="ServiceForms" Type="Self.ServiceForms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompEmployees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceForms">
+              <PropertyRef Name="CompEmp1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceForms_CompEmployees1">
+          <End Role="CompEmployees" Type="Self.CompEmployees" Multiplicity="0..1" />
+          <End Role="ServiceForms" Type="Self.ServiceForms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompEmployees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceForms">
+              <PropertyRef Name="CompEmp2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceForms_EmployeeDetails1">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetails" Multiplicity="1" />
+          <End Role="ServiceForms" Type="Self.ServiceForms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceForms">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserXAction_Application_Action">
+          <End Role="Application_Action" Type="Self.Application_Action" Multiplicity="1" />
+          <End Role="UserXAction" Type="Self.UserXAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application_Action">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserXAction">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserXAction_Membership_User">
+          <End Role="Membership_User" Type="Self.Membership_User" Multiplicity="1" />
+          <End Role="UserXAction" Type="Self.UserXAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserXAction">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserXRole_Membership_Role">
+          <End Role="Membership_Role" Type="Self.Membership_Role" Multiplicity="1" />
+          <End Role="UserXRole" Type="Self.UserXRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership_Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserXRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserXRole_Membership_User">
+          <End Role="Membership_User" Type="Self.Membership_User" Multiplicity="1" />
+          <End Role="UserXRole" Type="Self.UserXRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserXRole">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FCDatabaseModelStoreContainer">
+          <EntitySet Name="ActionXRole" EntityType="Self.ActionXRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Application_Action" EntityType="Self.Application_Action" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Application_Controller" EntityType="Self.Application_Controller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompEmployees" EntityType="Self.CompEmployees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DailyForms" EntityType="Self.DailyForms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeDetails" EntityType="Self.EmployeeDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="General_RowStatus" EntityType="Self.General_RowStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Membership_Role" EntityType="Self.Membership_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Membership_User" EntityType="Self.Membership_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceForms" EntityType="Self.ServiceForms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserXAction" EntityType="Self.UserXAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserXRole" EntityType="Self.UserXRole" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ActionXRole_Application_Action" Association="Self.FK_ActionXRole_Application_Action">
+            <End Role="Application_Action" EntitySet="Application_Action" />
+            <End Role="ActionXRole" EntitySet="ActionXRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActionXRole_Membership_Role" Association="Self.FK_ActionXRole_Membership_Role">
+            <End Role="Membership_Role" EntitySet="Membership_Role" />
+            <End Role="ActionXRole" EntitySet="ActionXRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Action_Application_Controller" Association="Self.FK_Application_Action_Application_Controller">
+            <End Role="Application_Controller" EntitySet="Application_Controller" />
+            <End Role="Application_Action" EntitySet="Application_Action" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompEmployees_Companies" Association="Self.FK_CompEmployees_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="CompEmployees" EntitySet="CompEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyForms_Cars" Association="Self.FK_DailyForms_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="DailyForms" EntitySet="DailyForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyForms_Companies" Association="Self.FK_DailyForms_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="DailyForms" EntitySet="DailyForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyForms_EmployeeDetails1" Association="Self.FK_DailyForms_EmployeeDetails1">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="DailyForms" EntitySet="DailyForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeDetails_Membership_User" Association="Self.FK_EmployeeDetails_Membership_User">
+            <End Role="Membership_User" EntitySet="Membership_User" />
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Membership_User_General_RowStatus" Association="Self.FK_Membership_User_General_RowStatus">
+            <End Role="General_RowStatus" EntitySet="General_RowStatus" />
+            <End Role="Membership_User" EntitySet="Membership_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Companies" Association="Self.FK_Orders_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_EmployeeDetails1" Association="Self.FK_Orders_EmployeeDetails1">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Products" Association="Self.FK_Orders_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Companies" Association="Self.FK_Schedule_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_EmployeeDetails2" Association="Self.FK_Schedule_EmployeeDetails2">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_EmployeeDetails3" Association="Self.FK_Schedule_EmployeeDetails3">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceForms_Companies" Association="Self.FK_ServiceForms_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="ServiceForms" EntitySet="ServiceForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceForms_CompEmployees" Association="Self.FK_ServiceForms_CompEmployees">
+            <End Role="CompEmployees" EntitySet="CompEmployees" />
+            <End Role="ServiceForms" EntitySet="ServiceForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceForms_CompEmployees1" Association="Self.FK_ServiceForms_CompEmployees1">
+            <End Role="CompEmployees" EntitySet="CompEmployees" />
+            <End Role="ServiceForms" EntitySet="ServiceForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceForms_EmployeeDetails1" Association="Self.FK_ServiceForms_EmployeeDetails1">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="ServiceForms" EntitySet="ServiceForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserXAction_Application_Action" Association="Self.FK_UserXAction_Application_Action">
+            <End Role="Application_Action" EntitySet="Application_Action" />
+            <End Role="UserXAction" EntitySet="UserXAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserXAction_Membership_User" Association="Self.FK_UserXAction_Membership_User">
+            <End Role="Membership_User" EntitySet="Membership_User" />
+            <End Role="UserXAction" EntitySet="UserXAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserXRole_Membership_Role" Association="Self.FK_UserXRole_Membership_Role">
+            <End Role="Membership_Role" EntitySet="Membership_Role" />
+            <End Role="UserXRole" EntitySet="UserXRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserXRole_Membership_User" Association="Self.FK_UserXRole_Membership_User">
+            <End Role="Membership_User" EntitySet="Membership_User" />
+            <End Role="UserXRole" EntitySet="UserXRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FCDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Application_Action">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerID" Type="Int32" />
+          <NavigationProperty Name="Application_Controller" Relationship="Self.FK_Application_Action_Application_Controller" FromRole="Application_Action" ToRole="Application_Controller" />
+          <NavigationProperty Name="UserXActions" Relationship="Self.FK_UserXAction_Application_Action" FromRole="Application_Action" ToRole="UserXAction" />
+          <NavigationProperty Name="Membership_Role" Relationship="Self.ActionXRole" FromRole="Application_Action" ToRole="Membership_Role" />
+        </EntityType>
+        <EntityType Name="Application_Controller">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Application_Action" Relationship="Self.FK_Application_Action_Application_Controller" FromRole="Application_Controller" ToRole="Application_Action" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CarBrand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HiredKm" Type="Double" />
+          <Property Name="ContractKm" Type="Double" />
+          <Property Name="HiredDate" Type="DateTime" Precision="0" />
+          <Property Name="ContractDate" Type="DateTime" Precision="0" />
+          <Property Name="ActualKm" Type="Double" />
+          <NavigationProperty Name="DailyForms" Relationship="Self.FK_DailyForms_Cars" FromRole="Cars" ToRole="DailyForms" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectStart" Type="DateTime" Precision="0" />
+          <Property Name="PlannedEndDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CompEmployees" Relationship="Self.FK_CompEmployees_Companies" FromRole="Companies" ToRole="CompEmployees" />
+          <NavigationProperty Name="DailyForms" Relationship="Self.FK_DailyForms_Companies" FromRole="Companies" ToRole="DailyForms" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Companies" FromRole="Companies" ToRole="Orders" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK_Schedule_Companies" FromRole="Companies" ToRole="Schedule" />
+          <NavigationProperty Name="ServiceForms" Relationship="Self.FK_ServiceForms_Companies" FromRole="Companies" ToRole="ServiceForms" />
+        </EntityType>
+        <EntityType Name="CompEmployee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_CompEmployees_Companies" FromRole="CompEmployees" ToRole="Companies" />
+          <NavigationProperty Name="ServiceForms" Relationship="Self.FK_ServiceForms_CompEmployees" FromRole="CompEmployees" ToRole="ServiceForms" />
+          <NavigationProperty Name="ServiceForms1" Relationship="Self.FK_ServiceForms_CompEmployees1" FromRole="CompEmployees" ToRole="ServiceForms" />
+        </EntityType>
+        <EntityType Name="DailyForm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="CarID" Type="Int32" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Car" Relationship="Self.FK_DailyForms_Cars" FromRole="DailyForms" ToRole="Cars" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_DailyForms_Companies" FromRole="DailyForms" ToRole="Companies" />
+          <NavigationProperty Name="EmployeeDetail" Relationship="Self.FK_DailyForms_EmployeeDetails1" FromRole="DailyForms" ToRole="EmployeeDetails" />
+        </EntityType>
+        <EntityType Name="EmployeeDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Precision="3" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="PersonelPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="CompPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IsMarried" Type="Boolean" />
+          <NavigationProperty Name="DailyForms" Relationship="Self.FK_DailyForms_EmployeeDetails1" FromRole="EmployeeDetails" ToRole="DailyForms" />
+          <NavigationProperty Name="Membership_User" Relationship="Self.FK_EmployeeDetails_Membership_User" FromRole="EmployeeDetails" ToRole="Membership_User" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_EmployeeDetails1" FromRole="EmployeeDetails" ToRole="Orders" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK_Schedule_EmployeeDetails2" FromRole="EmployeeDetails" ToRole="Schedule" />
+          <NavigationProperty Name="Schedules1" Relationship="Self.FK_Schedule_EmployeeDetails3" FromRole="EmployeeDetails" ToRole="Schedule" />
+          <NavigationProperty Name="ServiceForms" Relationship="Self.FK_ServiceForms_EmployeeDetails1" FromRole="EmployeeDetails" ToRole="ServiceForms" />
+        </EntityType>
+        <EntityType Name="General_RowStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Membership_User" Relationship="Self.FK_Membership_User_General_RowStatus" FromRole="General_RowStatus" ToRole="Membership_User" />
+        </EntityType>
+        <EntityType Name="Membership_Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Application_Action" Relationship="Self.ActionXRole" FromRole="Membership_Role" ToRole="Application_Action" />
+          <NavigationProperty Name="Membership_User" Relationship="Self.UserXRole" FromRole="Membership_Role" ToRole="Membership_User" />
+        </EntityType>
+        <EntityType Name="Membership_User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Salt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="UserCode" Type="Guid" />
+          <Property Name="RowStatusID" Type="Int32" />
+          <NavigationProperty Name="EmployeeDetail" Relationship="Self.FK_EmployeeDetails_Membership_User" FromRole="Membership_User" ToRole="EmployeeDetails" />
+          <NavigationProperty Name="General_RowStatus" Relationship="Self.FK_Membership_User_General_RowStatus" FromRole="Membership_User" ToRole="General_RowStatus" />
+          <NavigationProperty Name="UserXActions" Relationship="Self.FK_UserXAction_Membership_User" FromRole="Membership_User" ToRole="UserXAction" />
+          <NavigationProperty Name="Membership_Role" Relationship="Self.UserXRole" FromRole="Membership_User" ToRole="Membership_Role" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="Delivered" Type="Int32" />
+          <Property Name="OrderQuantity" Type="Int32" />
+          <Property Name="ContQuantity" Type="Int32" />
+          <Property Name="SalePrice" Type="Double" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Orders_Companies" FromRole="Orders" ToRole="Companies" />
+          <NavigationProperty Name="EmployeeDetail" Relationship="Self.FK_Orders_EmployeeDetails1" FromRole="Orders" ToRole="EmployeeDetails" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Orders_Products" FromRole="Orders" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Double" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UnitsInStock" Type="Int16" />
+          <Property Name="UnitsInOrder" Type="Int16" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Products" FromRole="Products" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="JobCreatorID" Type="Int32" Nullable="false" />
+          <Property Name="JobCreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Schedule_Companies" FromRole="Schedule" ToRole="Companies" />
+          <NavigationProperty Name="EmployeeDetail" Relationship="Self.FK_Schedule_EmployeeDetails2" FromRole="Schedule" ToRole="EmployeeDetails" />
+          <NavigationProperty Name="EmployeeDetail1" Relationship="Self.FK_Schedule_EmployeeDetails3" FromRole="Schedule" ToRole="EmployeeDetails" />
+        </EntityType>
+        <EntityType Name="ServiceForm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="CompEmp1ID" Type="Int32" />
+          <Property Name="CompEmp2ID" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="ServiceTypeID" Type="Int32" />
+          <Property Name="JobDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNo" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="IsWarrantied" Type="Boolean" />
+          <Property Name="IsFree" Type="Boolean" />
+          <Property Name="IsArıza" Type="Boolean" />
+          <Property Name="IsBakım" Type="Boolean" />
+          <Property Name="IsSupervice" Type="Boolean" />
+          <Property Name="IsDevreyeAlma" Type="Boolean" />
+          <Property Name="IsEducate" Type="Boolean" />
+          <Property Name="IsMontage" Type="Boolean" />
+          <Property Name="IsDelivering" Type="Boolean" />
+          <Property Name="IsMeeting" Type="Boolean" />
+          <Property Name="IsFirsManint" Type="Boolean" />
+          <Property Name="IsSecondMaint" Type="Boolean" />
+          <Property Name="IsThirdMaint" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_ServiceForms_Companies" FromRole="ServiceForms" ToRole="Companies" />
+          <NavigationProperty Name="CompEmployee" Relationship="Self.FK_ServiceForms_CompEmployees" FromRole="ServiceForms" ToRole="CompEmployees" />
+          <NavigationProperty Name="CompEmployee1" Relationship="Self.FK_ServiceForms_CompEmployees1" FromRole="ServiceForms" ToRole="CompEmployees" />
+          <NavigationProperty Name="EmployeeDetail" Relationship="Self.FK_ServiceForms_EmployeeDetails1" FromRole="ServiceForms" ToRole="EmployeeDetails" />
+        </EntityType>
+        <EntityType Name="UserXAction">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ActionID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ActionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Application_Action" Relationship="Self.FK_UserXAction_Application_Action" FromRole="UserXAction" ToRole="Application_Action" />
+          <NavigationProperty Name="Membership_User" Relationship="Self.FK_UserXAction_Membership_User" FromRole="UserXAction" ToRole="Membership_User" />
+        </EntityType>
+        <Association Name="FK_Application_Action_Application_Controller">
+          <End Role="Application_Controller" Type="Self.Application_Controller" Multiplicity="0..1" />
+          <End Role="Application_Action" Type="Self.Application_Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application_Controller">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Application_Action">
+              <PropertyRef Name="ControllerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserXAction_Application_Action">
+          <End Role="Application_Action" Type="Self.Application_Action" Multiplicity="1" />
+          <End Role="UserXAction" Type="Self.UserXAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application_Action">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserXAction">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyForms_Cars">
+          <End Role="Cars" Type="Self.Car" Multiplicity="0..1" />
+          <End Role="DailyForms" Type="Self.DailyForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DailyForms">
+              <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompEmployees_Companies">
+          <End Role="Companies" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CompEmployees" Type="Self.CompEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CompEmployees">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyForms_Companies">
+          <End Role="Companies" Type="Self.Company" Multiplicity="1" />
+          <End Role="DailyForms" Type="Self.DailyForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DailyForms">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Companies">
+          <End Role="Companies" Type="Self.Company" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Companies">
+          <End Role="Companies" Type="Self.Company" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceForms_Companies">
+          <End Role="Companies" Type="Self.Company" Multiplicity="1" />
+          <End Role="ServiceForms" Type="Self.ServiceForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceForms">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceForms_CompEmployees">
+          <End Role="CompEmployees" Type="Self.CompEmployee" Multiplicity="0..1" />
+          <End Role="ServiceForms" Type="Self.ServiceForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompEmployees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceForms">
+              <PropertyRef Name="CompEmp1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceForms_CompEmployees1">
+          <End Role="CompEmployees" Type="Self.CompEmployee" Multiplicity="0..1" />
+          <End Role="ServiceForms" Type="Self.ServiceForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompEmployees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceForms">
+              <PropertyRef Name="CompEmp2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyForms_EmployeeDetails1">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetail" Multiplicity="1" />
+          <End Role="DailyForms" Type="Self.DailyForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DailyForms">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeDetails_Membership_User">
+          <End Role="Membership_User" Type="Self.Membership_User" Multiplicity="1" />
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Membership_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmployeeDetails">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_EmployeeDetails1">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetail" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_EmployeeDetails2">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetail" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_EmployeeDetails3">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetail" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="JobCreatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceForms_EmployeeDetails1">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetail" Multiplicity="1" />
+          <End Role="ServiceForms" Type="Self.ServiceForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceForms">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Membership_User_General_RowStatus">
+          <End Role="General_RowStatus" Type="Self.General_RowStatus" Multiplicity="0..1" />
+          <End Role="Membership_User" Type="Self.Membership_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="General_RowStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Membership_User">
+              <PropertyRef Name="RowStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserXAction_Membership_User">
+          <End Role="Membership_User" Type="Self.Membership_User" Multiplicity="1" />
+          <End Role="UserXAction" Type="Self.UserXAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserXAction">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Products">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ActionXRole">
+          <End Role="Application_Action" Type="Self.Application_Action" Multiplicity="*" />
+          <End Role="Membership_Role" Type="Self.Membership_Role" Multiplicity="*" />
+        </Association>
+        <Association Name="UserXRole">
+          <End Role="Membership_Role" Type="Self.Membership_Role" Multiplicity="*" />
+          <End Role="Membership_User" Type="Self.Membership_User" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="FCDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Application_Action" EntityType="Self.Application_Action" />
+          <EntitySet Name="Application_Controller" EntityType="Self.Application_Controller" />
+          <EntitySet Name="Cars" EntityType="Self.Car" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="CompEmployees" EntityType="Self.CompEmployee" />
+          <EntitySet Name="DailyForms" EntityType="Self.DailyForm" />
+          <EntitySet Name="EmployeeDetails" EntityType="Self.EmployeeDetail" />
+          <EntitySet Name="General_RowStatus" EntityType="Self.General_RowStatus" />
+          <EntitySet Name="Membership_Role" EntityType="Self.Membership_Role" />
+          <EntitySet Name="Membership_User" EntityType="Self.Membership_User" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Schedules" EntityType="Self.Schedule" />
+          <EntitySet Name="ServiceForms" EntityType="Self.ServiceForm" />
+          <EntitySet Name="UserXActions" EntityType="Self.UserXAction" />
+          <AssociationSet Name="FK_Application_Action_Application_Controller" Association="Self.FK_Application_Action_Application_Controller">
+            <End Role="Application_Controller" EntitySet="Application_Controller" />
+            <End Role="Application_Action" EntitySet="Application_Action" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserXAction_Application_Action" Association="Self.FK_UserXAction_Application_Action">
+            <End Role="Application_Action" EntitySet="Application_Action" />
+            <End Role="UserXAction" EntitySet="UserXActions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyForms_Cars" Association="Self.FK_DailyForms_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="DailyForms" EntitySet="DailyForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompEmployees_Companies" Association="Self.FK_CompEmployees_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="CompEmployees" EntitySet="CompEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyForms_Companies" Association="Self.FK_DailyForms_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="DailyForms" EntitySet="DailyForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Companies" Association="Self.FK_Orders_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Companies" Association="Self.FK_Schedule_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Schedule" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceForms_Companies" Association="Self.FK_ServiceForms_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="ServiceForms" EntitySet="ServiceForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceForms_CompEmployees" Association="Self.FK_ServiceForms_CompEmployees">
+            <End Role="CompEmployees" EntitySet="CompEmployees" />
+            <End Role="ServiceForms" EntitySet="ServiceForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceForms_CompEmployees1" Association="Self.FK_ServiceForms_CompEmployees1">
+            <End Role="CompEmployees" EntitySet="CompEmployees" />
+            <End Role="ServiceForms" EntitySet="ServiceForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyForms_EmployeeDetails1" Association="Self.FK_DailyForms_EmployeeDetails1">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="DailyForms" EntitySet="DailyForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeDetails_Membership_User" Association="Self.FK_EmployeeDetails_Membership_User">
+            <End Role="Membership_User" EntitySet="Membership_User" />
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_EmployeeDetails1" Association="Self.FK_Orders_EmployeeDetails1">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_EmployeeDetails2" Association="Self.FK_Schedule_EmployeeDetails2">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="Schedule" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_EmployeeDetails3" Association="Self.FK_Schedule_EmployeeDetails3">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="Schedule" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceForms_EmployeeDetails1" Association="Self.FK_ServiceForms_EmployeeDetails1">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="ServiceForms" EntitySet="ServiceForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Membership_User_General_RowStatus" Association="Self.FK_Membership_User_General_RowStatus">
+            <End Role="General_RowStatus" EntitySet="General_RowStatus" />
+            <End Role="Membership_User" EntitySet="Membership_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserXAction_Membership_User" Association="Self.FK_UserXAction_Membership_User">
+            <End Role="Membership_User" EntitySet="Membership_User" />
+            <End Role="UserXAction" EntitySet="UserXActions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Products" Association="Self.FK_Orders_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="ActionXRole" Association="Self.ActionXRole">
+            <End Role="Application_Action" EntitySet="Application_Action" />
+            <End Role="Membership_Role" EntitySet="Membership_Role" />
+          </AssociationSet>
+          <AssociationSet Name="UserXRole" Association="Self.UserXRole">
+            <End Role="Membership_Role" EntitySet="Membership_Role" />
+            <End Role="Membership_User" EntitySet="Membership_User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FCDatabaseModelStoreContainer" CdmEntityContainer="FCDatabaseEntities">
+          <EntitySetMapping Name="Application_Action">
+            <EntityTypeMapping TypeName="FCDatabaseModel.Application_Action">
+              <MappingFragment StoreEntitySet="Application_Action">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ControllerID" ColumnName="ControllerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Application_Controller">
+            <EntityTypeMapping TypeName="FCDatabaseModel.Application_Controller">
+              <MappingFragment StoreEntitySet="Application_Controller">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="FCDatabaseModel.Car">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CarBrand" ColumnName="CarBrand" />
+                <ScalarProperty Name="HiredKm" ColumnName="HiredKm" />
+                <ScalarProperty Name="ContractKm" ColumnName="ContractKm" />
+                <ScalarProperty Name="HiredDate" ColumnName="HiredDate" />
+                <ScalarProperty Name="ContractDate" ColumnName="ContractDate" />
+                <ScalarProperty Name="ActualKm" ColumnName="ActualKm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="FCDatabaseModel.Company">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="ProjectStart" ColumnName="ProjectStart" />
+                <ScalarProperty Name="PlannedEndDate" ColumnName="PlannedEndDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompEmployees">
+            <EntityTypeMapping TypeName="FCDatabaseModel.CompEmployee">
+              <MappingFragment StoreEntitySet="CompEmployees">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyForms">
+            <EntityTypeMapping TypeName="FCDatabaseModel.DailyForm">
+              <MappingFragment StoreEntitySet="DailyForms">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeDetails">
+            <EntityTypeMapping TypeName="FCDatabaseModel.EmployeeDetail">
+              <MappingFragment StoreEntitySet="EmployeeDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="PersonelPhone" ColumnName="PersonelPhone" />
+                <ScalarProperty Name="CompPhone" ColumnName="CompPhone" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="IsMarried" ColumnName="IsMarried" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="General_RowStatus">
+            <EntityTypeMapping TypeName="FCDatabaseModel.General_RowStatus">
+              <MappingFragment StoreEntitySet="General_RowStatus">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Membership_Role">
+            <EntityTypeMapping TypeName="FCDatabaseModel.Membership_Role">
+              <MappingFragment StoreEntitySet="Membership_Role">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Membership_User">
+            <EntityTypeMapping TypeName="FCDatabaseModel.Membership_User">
+              <MappingFragment StoreEntitySet="Membership_User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="RowStatusID" ColumnName="RowStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="FCDatabaseModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="OrderQuantity" ColumnName="OrderQuantity" />
+                <ScalarProperty Name="ContQuantity" ColumnName="ContQuantity" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="FCDatabaseModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UnitsInStock" ColumnName="UnitsInStock" />
+                <ScalarProperty Name="UnitsInOrder" ColumnName="UnitsInOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedules">
+            <EntityTypeMapping TypeName="FCDatabaseModel.Schedule">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="JobCreatorID" ColumnName="JobCreatorID" />
+                <ScalarProperty Name="JobCreationDate" ColumnName="JobCreationDate" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceForms">
+            <EntityTypeMapping TypeName="FCDatabaseModel.ServiceForm">
+              <MappingFragment StoreEntitySet="ServiceForms">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CompEmp1ID" ColumnName="CompEmp1ID" />
+                <ScalarProperty Name="CompEmp2ID" ColumnName="CompEmp2ID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="ServiceTypeID" ColumnName="ServiceTypeID" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="ServiceDetails" ColumnName="ServiceDetails" />
+                <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+                <ScalarProperty Name="IsWarrantied" ColumnName="IsWarrantied" />
+                <ScalarProperty Name="IsFree" ColumnName="IsFree" />
+                <ScalarProperty Name="IsArıza" ColumnName="IsArıza" />
+                <ScalarProperty Name="IsBakım" ColumnName="IsBakım" />
+                <ScalarProperty Name="IsSupervice" ColumnName="IsSupervice" />
+                <ScalarProperty Name="IsDevreyeAlma" ColumnName="IsDevreyeAlma" />
+                <ScalarProperty Name="IsEducate" ColumnName="IsEducate" />
+                <ScalarProperty Name="IsMontage" ColumnName="IsMontage" />
+                <ScalarProperty Name="IsDelivering" ColumnName="IsDelivering" />
+                <ScalarProperty Name="IsMeeting" ColumnName="IsMeeting" />
+                <ScalarProperty Name="IsFirsManint" ColumnName="IsFirsManint" />
+                <ScalarProperty Name="IsSecondMaint" ColumnName="IsSecondMaint" />
+                <ScalarProperty Name="IsThirdMaint" ColumnName="IsThirdMaint" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserXActions">
+            <EntityTypeMapping TypeName="FCDatabaseModel.UserXAction">
+              <MappingFragment StoreEntitySet="UserXAction">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ActionXRole" TypeName="FCDatabaseModel.ActionXRole" StoreEntitySet="ActionXRole">
+            <EndProperty Name="Application_Action">
+              <ScalarProperty Name="ID" ColumnName="ActionID" />
+            </EndProperty>
+            <EndProperty Name="Membership_Role">
+              <ScalarProperty Name="ID" ColumnName="RoleID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserXRole" TypeName="FCDatabaseModel.UserXRole" StoreEntitySet="UserXRole">
+            <EndProperty Name="Membership_Role">
+              <ScalarProperty Name="ID" ColumnName="RoleID" />
+            </EndProperty>
+            <EndProperty Name="Membership_User">
+              <ScalarProperty Name="ID" ColumnName="UserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,104 @@
+﻿@model UI.MVC.FieldContact.PageModel.DailyFormModel
+
+@section CssFiles
+{
+
+    <link href="/Content/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/global/plugins/select2/css/select2.min.css" rel="stylesheet" />
+}
+
+@section JsFiles
+{
+    <script src="/Content/global/plugins/select2/js/select2.full.min.js"></script>
+    <script src="/Content/pages/scripts/components-select2.min.js"></script>
+    <script src="/Scripts/Report/DailyForm.js?@DateTime.Now"></script>
+    <script src="https://maps.google.com/maps/api/js?sensor=false&key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU"></script>
+}
+
+
+
+<!-- BEGIN SAMPLE FORM PORTLET-->
+<div class="portlet light ">
+    <div class="portlet-title">
+        <div class="caption font-red-sunglo">
+            <i class="icon-settings font-red-sunglo"></i>
+            <span class="caption-subject bold uppercase"> Günlük İş Formu</span> <br />
+            <span class="caption-helper">Günlük iş formlarını gönderdiğimiz sayfadır. Buradan gönderilen bilgilere göre araç takibi yapılır, 
+            projelere harcanan adam/gün sayıları doldurulur.</span> <br />
+            <span class="caption-helper">Ayrıca burada bildirim yapan kişinin anlık konumu kaydedilir.</span>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form role="form">
+            <div class="form-body">
+                <div class="row">
+                    <input type="hidden" id="locationPath" />
+                    <div class="form-group has-success col-md-12">
+                        <label for="span_small" class="control-label">Gidilen Şantiye-Firma</label><br />
+                        <select id="span_small" class="form-control select2 col-md-12 getCompany">
+                            <optgroup label="Kayıtlı Firmalar">
+
+
+                                @for (int i = 0; i < Model.Jobs.Count; i++)
+                                {
+                                    <option value="@Model.Jobs[i].ID">@Model.Jobs[i].JobName</option>
+                                }
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Şirket Aracı Var Mı?</label>
+                    <div class="mt-radio-inline">
+                        <label class="mt-radio">
+                            <input type="radio" name="singleOrPlural" id="single" value="single" checked> Hayır
+                            <span></span>
+                        </label>
+                        <label class="mt-radio">
+                            <input type="radio" name="singleOrPlural" id="plural" value="notSingle"> Evet
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group has-success col-md-12">
+                    <label for="span_small" class="control-label">Gidilen Şantiye-Firma</label><br />
+                    <select id="span_small" class="form-control select2 col-md-12 getCar" disabled>
+                        <optgroup label="Araç">
+
+
+                            @for (int i = 0; i < Model.Cars.Count; i++)
+                            {
+                                <option value="@Model.Cars[i].ID">@Model.Cars[i].Name</option>
+                            }
+                        </optgroup>
+                    </select>
+                </div>
+
+                @*<div class="form-group">
+                        <select id="select2-multiple-input-lg" class="form-control input-lg select2-multiple col-md-12 getCar" multiple disabled>
+                            <optgroup label="Araç">
+                                @for (int i = 0; i < Model.Cars.Count; i++)
+                                {
+                                    <option value="@Model.Cars[i].ID">@Model.Cars[i].Name</option>
+                                }
+
+                            </optgroup>
+                        </select>
+                    </div>*@
+
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    <textarea class="form-control" rows="3" id="description"></textarea>
+                </div>
+                <input type="hidden" id="id" />
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn blue" id="sendReport">Raporu Gönder</button>
+                <button type="reset" class="btn default">Temizle</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- END SAMPLE FORM PORTLET-->
