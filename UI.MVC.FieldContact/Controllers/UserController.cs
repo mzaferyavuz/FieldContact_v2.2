@@ -28,21 +28,7 @@ namespace UI.MVC.FieldContact.Controllers
         {
             try
             {
-                //using (DataService ds = new DataService())
-                //{
-                //    ds.Context.Membership_User.FirstOrDefault(x => x.ID == 5).EmployeeDetail = new EmployeeDetail
-                //    {
-                //        Name="Muzaffer",
-                //        LastName="Yavuz",
-                //         BirthDate=Convert.ToDateTime("26.03.1990"),
-                //          Salary=2750,
-                //           HireDate=Convert.ToDateTime("18.07.2016"),
-                //            PersonelPhone="05348308493",
-                             
-                //    };
-
-                //    ds.Context.SaveChanges();
-                //}
+               
             }
             catch (Exception ex)
             {
